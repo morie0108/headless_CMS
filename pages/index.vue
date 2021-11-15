@@ -31,6 +31,7 @@
               >
                 <v-card-title class="align-end fill-height font-weight-bold">
                   {{ post.fields.title }}
+                  <span :is="draftChip(post)" />
                 </v-card-title>
               </v-img>
 
@@ -68,8 +69,12 @@
 <script>
 import { mapGetters } from 'vuex'
 import client from '~/plugins/contentful'
+import draftChip from '~/components/posts/draftChip'
 
 export default {
+  components: {
+    draftChip
+  },
   async asyncData ({ env }) {
     let posts = []
     await client.getEntries({
@@ -79,6 +84,7 @@ export default {
     return { posts }
   },
   computed: {
+    ...mapGetters(['setEyeCatch', 'draftChip']),
     ...mapGetters(['setEyeCatch']),
     linkTo: () => (obj) => {
       return { name: 'posts-slug', params: { slug: obj.fields.slug } }
