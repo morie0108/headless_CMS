@@ -1,21 +1,23 @@
 <template>
   <v-container fluid>
-    <template v-if="currentPost">
-      <v-img
-        :src="setEyeCatch(currentPost).url"
-        :alt="setEyeCatch(currentPost).title"
-        :aspect-ratio="16/9"
-        width="700"
-        height="400"
-        class="mx-auto"
-      />
-      {{ currentPost.fields.publishDate }}<br>
-      {{ currentPost.fields.body }}
+    <template >
+      <div v-show ="currentPost">
+        <v-img
+          :src="setEyeCatch(currentPost).url"
+          :alt="setEyeCatch(currentPost).title"
+          :aspect-ratio="16/9"
+          width="700"
+          height="400"
+          class="mx-auto"
+        />
+        {{ currentPost.fields.publishDate }}<br>
+        {{ currentPost.fields.body }}
+      </div>
     </template>
 
-    <template v-else>
+    <!-- <template v-else>
       お探しの記事は見つかりませんでした。
-    </template>
+    </template> -->
 
     <div>
       <v-btn
