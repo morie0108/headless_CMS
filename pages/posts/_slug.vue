@@ -40,7 +40,8 @@ import { mapGetters } from 'vuex'
 export default {
   async asyncData ({ payload, store, params, error }) {
     const currentPost = payload || await store.state.posts.find(post => post.fields.slug === params.slug)
-    console.log(currentPost)
+    console.log(store)
+    console.log(params)
 
     if (currentPost) {
       return { currentPost }
