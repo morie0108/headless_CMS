@@ -1,7 +1,6 @@
 <template>
   <v-container fluid>
     <template v-if="currentPost">
-      {{ currentPost.fields.title }}
       <v-img
         :src="setEyeCatch(currentPost).url"
         :alt="setEyeCatch(currentPost).title"
@@ -37,9 +36,9 @@
 import { mapGetters } from 'vuex'
 
 export default {
-
   async asyncData ({ payload, store, params, error }) {
     const currentPost = payload || await store.state.posts.find(post => post.fields.slug === params.slug)
+    debugger
 
     if (currentPost) {
       return { currentPost }
