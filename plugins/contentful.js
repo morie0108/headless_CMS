@@ -14,4 +14,5 @@ const config =
 
 const client = contentful.createClient(config)
 
+
 export default client

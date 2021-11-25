@@ -24,9 +24,9 @@ export const getters = {
 }
 
 export const mutations = {
-  setPosts(state, payload) {
-    console.log(payload)
+  setPosts (state, payload) {
     state.posts = payload
+    // console.log(state.posts)
   }
 }
 
@@ -38,5 +38,6 @@ export const actions = {
     }).then(res =>
       commit('setPosts', res.items)
     ).catch(console.error)
+    // console.log(this.res)
   }
 }
