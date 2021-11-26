@@ -2,6 +2,11 @@
   <v-container fluid>
     <template v-if="currentPost">
       <div>
+        <v-breadcrumbs :items="breadcrumbs">
+          <template #divider>
+            <v-icon>mdi-chevron-right</v-icon>
+          </template>
+        </v-breadcrumbs>
         <v-img
           :src="setEyeCatch(currentPost).url"
           :alt="setEyeCatch(currentPost).title"
@@ -38,8 +43,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  async asyncData ({ payload, store, params, error}) {
-
+  async asyncData ({ payload, store, params, error }) {
     const currentPost = payload || await store.state.posts.find(post => post.fields.slug === params.slug)
 
     if (currentPost) {
@@ -50,7 +54,14 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['setEyeCatch'])
+    ...mapGetters(['setEyeCatch']),
+    breadcrumbs () {
+      const category = this.currentPost.fields.category
+      return [
+        { text: 'ホーム', to: '/' },
+        { text: category.fields.name, to: '#' }
+      ]
+    }
   }
 }
 </script>
