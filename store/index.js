@@ -26,7 +26,6 @@ export const getters = {
 export const mutations = {
   setPosts (state, payload) {
     state.posts = payload
-    // console.log(state.posts)
   }
 }
 

@@ -1,7 +1,8 @@
 import colors from 'vuetify/es5/util/colors'
+
+require('dotenv').config()
 const client = require('./plugins/contentful').default
 
-require('dotenv').config() // 追記
 
 export default {
   // Target: https://go.nuxtjs.dev/config-target
@@ -108,10 +109,13 @@ export default {
         client.getEntries({
           content_type: process.env.CTF_BLOG_POST_TYPE_ID
         })
-      ]).then(([ posts ]) => {
+      ]).then(([posts]) => {
         return [
-          ...posts.items.map(post => {
-            return { route: `posts/${post.fields.slug}`, payload: post }
+          ...posts.items.map((post) => {
+            return {
+             route: `posts/${post.fields.slug}`,
+             payload: post
+            }
           })
         ]
       })

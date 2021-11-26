@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
-    <template >
-      <div v-show ="currentPost">
+    <template v-if="currentPost">
+      <div>
         <v-img
           :src="setEyeCatch(currentPost).url"
           :alt="setEyeCatch(currentPost).title"
@@ -15,9 +15,9 @@
       </div>
     </template>
 
-    <!-- <template v-else>
+    <template v-else>
       お探しの記事は見つかりませんでした。
-    </template> -->
+    </template>
 
     <div>
       <v-btn
@@ -38,12 +38,8 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  async asyncData ({ payload, store, params, error }) {
-    const currentPost = payload || await store.state.posts.find(post => post.fields.slug === params.slug)
-    console.log(payload)
-    console.log(store)
-    console.log(params)
-    console.log(currentPost)
+  async asyncData ({ store, params, error }) {
+    const currentPost = await store.state.posts.find(post => post.fields.slug === params.slug)
 
     if (currentPost) {
       return { currentPost }
@@ -51,6 +47,7 @@ export default {
       return error({ statusCode: 400 })
     }
   },
+
   computed: {
     ...mapGetters(['setEyeCatch'])
   }
