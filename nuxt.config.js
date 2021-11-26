@@ -112,8 +112,9 @@ export default {
       ]).then(([posts]) => {
         return [
           ...posts.items.map((post) => {
+            console.log(post.fields.slug)
             return {
-             route: `posts/${post.fields.slug}`,
+             route: `/posts/${post.fields.slug}`,
              payload: post
             }
           })
