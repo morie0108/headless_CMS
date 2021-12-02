@@ -115,7 +115,7 @@ import draftChip from '~/components/posts/draftChip'
 
 export default {
   components: {
-    draftChip
+    draftChip,
   },
   computed: {
     ...mapState(['posts']),
