@@ -1,5 +1,9 @@
 <template>
   <v-container fluid>
+      <div class="discription">
+        <h1>このサイトの紹介</h1>
+        <p>こちらのサイトでは、最新の情報をお伝えしています。</p>
+      </div>
     <v-row
       justify="center"
     >
@@ -133,3 +137,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+  .discription{
+    padding-top: 70px;
+    width: 90%;
+    margin: auto;
+  }
+</style>

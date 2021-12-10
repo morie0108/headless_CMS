@@ -1,7 +1,10 @@
 <template>
   <v-container fluid>
-    <breadcrumbs />
-    <h1>{{ category.fields.name }}</h1>
+    <breadcrumbs :add-items="addBreads" class="breadcrumbs"/>
+    <div class="discription">
+      <h1>{{ category.fields.name }}</h1>
+      <p>こちらのページでは、{{ category.fields.name }}に関連する記事を紹介しています。</p>
+    </div>
     <v-row
       justify="center"
     >
@@ -106,19 +109,22 @@ import { mapState, mapGetters } from 'vuex'
 import draftChip from '~/components/posts/draftChip'
 
 export default {
-  components: {
-    draftChip
+    components: {
+    draftChip,
   },
   async asyncData ({ payload, store, params, error }) {
     const category = payload || await store.state.categories.find(cat => cat.fields.slug === params.slug)
-
     if (category) {
-      return { category }
+      const relatedPosts = store.getters.associateCategoryPosts(category)
+      return { category, relatedPosts  }
     } else {
       return error({ statusCode: 400 })
     }
   },
   computed: {
+    addBreads () {
+      return [{ icon: 'mdi-image-filter-none', text: 'カテゴリ一覧', to: '/categories' }]
+    },
     ...mapState(['posts']),
     ...mapGetters(['setEyeCatch', 'draftChip', 'linkTo']),
     relatedPosts () {
@@ -127,3 +133,15 @@ export default {
   }
 }
 </script>
+
+
+<style lang="scss" scoped>
+  .breadcrumbs{
+    padding-top: 80px;
+  }
+  .discription{
+    height: 100px;
+    width: 90%;
+    margin: auto;
+  }
+</style>

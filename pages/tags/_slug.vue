@@ -1,8 +1,11 @@
 <template>
   <div>
   <v-container fluid>
-    <breadcrumbs :add-items="addBreads" />
+    <breadcrumbs :add-items="addBreads" class="breadcrumbs"/>
+    <div class="discription">
     <h1>{{ tag.fields.name }}</h1>
+      <p>こちらのページでは、{{ tag.fields.name }}に関連する記事を紹介しています。</p>
+    </div>
 
     <v-row
       justify="center"
@@ -120,12 +123,12 @@ import draftChip from '~/components/posts/draftChip'
 
 export default {
     components: {
-    draftChip
+    draftChip,
   },
   asyncData ({ payload, params, error, store, env }) {
     const tag = payload || store.state.tags.find(tag => tag.fields.slug === params.slug)
     if (tag) {
-      const relatedPosts = store.getters.associatePosts(tag)
+      const relatedPosts = store.getters.associateTagPosts(tag)
       return { tag, relatedPosts }
     } else {
       error({ statusCode: 400 })
@@ -150,3 +153,15 @@ export default {
   }
 }
 </script>
+
+
+<style lang="scss" scoped>
+  .breadcrumbs{
+    padding-top: 80px;
+  }
+  .discription{
+    height: 100px;
+    width: 90%;
+    margin: auto;
+  }
+</style>

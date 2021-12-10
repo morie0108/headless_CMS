@@ -31,7 +31,7 @@ export const getters = {
     }
     return posts
   },
-  associatePosts: state => (currentTag) => {
+  associateTagPosts: state => (currentTag) => {
     const posts = []
     for (let i = 0; i < state.posts.length; i++) {
       const post = state.posts[i]
@@ -39,6 +39,17 @@ export const getters = {
         const tag = post.fields.tags.find(tag => tag.sys.id === currentTag.sys.id)
 
         if (tag) { posts.push(post) }
+      }
+    }
+    return posts
+  },
+  associateCategoryPosts: state => (currentCategory) => {
+    const posts = []
+    for (let i = 0; i < state.posts.length; i++) {
+      const post = state.posts[i]
+      if (post.fields.category) {
+        const category = post.fields.category.sys.id === currentCategory.sys.id ? true:false;
+        if (category) { posts.push(post) }
       }
     }
     return posts

@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar class="header-bar" dark app>
+  <v-app-bar class="header-bar">
     <v-toolbar-title class="header-title">
       <nuxt-link to="/">Vuetify</nuxt-link>
     </v-toolbar-title>
@@ -12,7 +12,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .header-bar{
-  margin: 30px;
+  background: #d7edff;
+  position: fixed;
+  top: 0;
+  z-index: 5;
 }
 </style>

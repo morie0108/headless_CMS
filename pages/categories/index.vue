@@ -35,10 +35,10 @@
             >
               <template v-slot:[`item.fields.name`]="{ item }">
                 <v-icon size="18">
-                  mdi-tag-outline
+                  mdi-image-filter-none
                 </v-icon>
                 <nuxt-link
-                  :to="linkTo('tags', item)"
+                  :to="linkTo('categories', item)"
                 >
                   {{ item.fields.name }}
                 </nuxt-link>
@@ -75,7 +75,7 @@ export default {
     totalVisible: 7,
     headers: [
       {
-        text: 'タグ',
+        text: 'カテゴリ',
         align: 'left',
         value: 'fields.name'
       },
@@ -88,19 +88,19 @@ export default {
     ]
   }),
   computed: {
-    ...mapState(['tags']),
+    ...mapState(['categories']),
     ...mapGetters(['linkTo']),
     addBreads () {
-      return [{ icon: 'mdi-tag-outline', text: 'タグ一覧', to: '/tags', disabled: true, iconColor: 'grey' }]
+      return [{ icon: 'mdi-image-filter-none', text: 'カテゴリ一覧', to: '/categories', disabled: true, iconColor: 'grey' }]
     },
     tableItems () {
-      const tags = []
-      for (let i = 0; i < this.tags.length; i++) {
-        const tag = this.tags[i]
-        tag.fields.postcount = this.$store.getters.associateTagPosts(tag).length
-        tags.push(tag)
+      const categories = []
+      for (let i = 0; i < this.categories.length; i++) {
+        const category = this.categories[i]
+        category.fields.postcount = this.$store.getters.associateCategoryPosts(category).length
+        categories.push(category)
       }
-      return tags
+      return categories
     }
   }
 }
