@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar class="header-bar">
+  <v-app-bar class="header-bar main-color">
     <v-toolbar-title class="header-title">
       <nuxt-link to="/">Vuetify</nuxt-link>
     </v-toolbar-title>
