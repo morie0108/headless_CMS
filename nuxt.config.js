@@ -92,7 +92,7 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-          main-color: '#D1C4E9',
+          main: '#D1C4E9'
         }
       }
     }
