@@ -1,1 +1,1 @@
-# FTips
+# Headless_CMS template
