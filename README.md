@@ -1,4 +1,4 @@
-# FTips
+# Site title
 
 ## Build Setup
 
